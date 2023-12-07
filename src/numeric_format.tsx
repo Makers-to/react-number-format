@@ -351,6 +351,7 @@ export function useNumericFormat<BaseType = InputAttributes>(
     thousandsGroupStyle,
     suffix,
     allowNegative,
+    convertToPercentage,
     /* eslint-enable no-unused-vars */
     allowLeadingZeros,
     onKeyDown = noop,
