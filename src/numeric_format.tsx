@@ -39,6 +39,7 @@ export function format<BaseType = InputAttributes>(
     suffix = '',
     allowNegative,
     thousandsGroupStyle = 'thousand',
+    convertToPercentage,
   } = props;
 
   // don't apply formatting on empty string or '-'
@@ -47,6 +48,10 @@ export function format<BaseType = InputAttributes>(
   }
 
   const { thousandSeparator, decimalSeparator } = getSeparators(props);
+
+  if (convertToPercentage) {
+    numStr = String(Math.round(parseFloat(numStr) * 100));
+  }
 
   /**
    * Keep the decimal separator
@@ -138,7 +143,7 @@ export function removeFormatting<BaseType = InputAttributes>(
   changeMeta: ChangeMeta = getDefaultChangeMeta(value),
   props: NumericFormatProps<BaseType>,
 ) {
-  const { allowNegative, prefix = '', suffix = '', decimalScale } = props;
+  const { allowNegative, prefix = '', suffix = '', decimalScale, convertToPercentage } = props;
   const { from, to } = changeMeta;
   let { start, end } = to;
   const { allowedDecimalSeparators, decimalSeparator } = getSeparators(props);
@@ -275,6 +280,10 @@ export function removeFormatting<BaseType = InputAttributes>(
     !parseFloat(afterDecimal)
   ) {
     value = addNegation ? '-' : '';
+  }
+
+  if (convertToPercentage && parseFloat(value)) {
+    value = String(parseFloat(value) / 100);
   }
 
   return value;

@@ -108,6 +108,7 @@ export type NumericFormatProps<BaseType = InputAttributes> = NumberFormatProps<
     fixedDecimalScale?: boolean;
     allowNegative?: boolean;
     allowLeadingZeros?: boolean;
+    convertToPercentage?: boolean;
     suffix?: string;
     prefix?: string;
   },

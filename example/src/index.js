@@ -149,7 +149,7 @@ function CustomNegationNumberFormat({
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { test: 1232323.780023, thousandSeparator: '.' };
+    this.state = { test: 1232323.780023, percentageTest: 0.95, thousandSeparator: '.' };
 
     setTimeout(() => {
       this.setState({ thousandSeparator: ' ' });
@@ -192,6 +192,19 @@ class App extends React.Component {
             onBlur={(e) => console.log(e.target.value)}
           />
           <button onClick={() => this.setState({ thousandSeparator: ' ' })}>Ok</button>
+        </div>
+
+        <div className="example">
+          <h3>Convert to percentage : Format in input</h3>
+          <NumericFormat
+            value={this.state.percentageTest}
+            convertToPercentage
+            suffix="%"
+            onValueChange={(values) => {
+              console.log(values);
+              this.setState({ percentageTest: values.value });
+            }}
+          />
         </div>
 
         <div className="example">
