@@ -37,7 +37,8 @@
     "test": "cross-env NODE_ENV=test karma start && yarn test-ts",
     "test-build": "cross-env NODE_ENV=production TEST_BROWSER=ChromeHeadless karma start",
     "test-ts": "yarn tsc --noEmit",
-    "lint": "cross-env eslint src/**"
+    "lint": "cross-env eslint src/**",
+    "prepare": "yarn run build-dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
